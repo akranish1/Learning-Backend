@@ -1,0 +1,12 @@
+//Things which are not present in nodejs are : alert,windows and other DOM
+
+commands: 
+node (filename); //to run js file without the browser
+npm init: //to create package.json
+
+npm init makes your Node.js project shareable, maintainable, and 
+reproducible by creating a package.json file to track dependencies and project metadata.
+
+like i have installed express: without package.json my friend will not be able to
+know what to install, but after init than npm i express, this dependencies will be
+added automatically, and my friend will have to just install npm

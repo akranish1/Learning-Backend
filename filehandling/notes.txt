@@ -1,0 +1,40 @@
+How Nodejs works?
+client->Request->Nodejs->
+Nodejs have, Event Queue:which store request from clients
+than we have Event Loops : which manages Event queue inside Nodejs
+Request are of two types:
+1.Blocking
+2,Non-Blocking
+
+-----------------------------------------------------------------
+coming to flow again:
+nodejs->Event Queue-> Event loops-> checks Type of Request->Non-Blocking:direct give Response->if Blocking
+->passed it to Thread pool where thread is assigned for that work, 
+ByDefault there are 4 threads/Core in Thread pool, hence if we write Blocking code,than it can handle only 4 user,5th user have to wait
+which reduces chance of Scalability
+
+So, we should write Non-Blocking code:
+------------------------------------------------------------------
+Now what is Blocking and Non-Blocking :
+
+Async: Non-BLocking:
+const fs=require("fs");
+console.log(1);
+fs.readFile("test.txt","utf-8",(err,res)=<{
+    console.log(res);
+})
+console.log(2);
+OUTPUT: 1,2,Data of test.txt file
+
+-------------------------------------------------------
+but Blocking is Sync:
+const fs=require("fs");
+console.log(1);
+console.log(fs.readFileSync("test.txt","utf-8"))
+console.log(2);
+OUTPUT::1,Data of test.txt file,2
+-------------------------------------------------------
+
+to check your Computer cpus:
+const os=require("os");
+console.log(os.cpus().length);

@@ -1,0 +1,17 @@
+RESTfull/REST API: API + some rules
+there are various types of API, one of them is REST API
+
+
+API RESPONSE are of various types: image, text, HTML, JSON;
+when you request data from Server through Browser , It can give RESPONSE in HTML(SSR)
+SSR (SERVER SIDE RENDERING) these are faster than JSON data which is raw and gets render at client side so CSR
+CSR is done by front end tech like React;
+
+============================================
+
+Talking about rules,they are:
+Use HTTP methods correctly (GET, POST, PUT, DELETE). like not only using GET & POST for everything
+Use URLs (endpoints) to represent resources.
+Use stateless requests (server doesn’t remember who you are between calls).
+Data is usually sent/received in JSON.
+

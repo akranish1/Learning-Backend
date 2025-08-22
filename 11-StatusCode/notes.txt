@@ -1,0 +1,68 @@
+HTTP status codes are 3-digit numbers sent in the response to tell the client (browser/app) the result of the request.
+They are grouped into categories:
+
+| Range | Meaning                     | Example                     |
+| ----- | --------------------------- | --------------------------- |
+| 1xx   | Informational (rarely used) | `100 Continue`              |
+| 2xx   | Success                     | `200 OK`                    |
+| 3xx   | Redirection                 | `301 Moved Permanently`     |
+| 4xx   | Client errors               | `404 Not Found`             |
+| 5xx   | Server errors               | `500 Internal Server Error` |
+
+=======================================================================
+//Since we have to restart the server again and again
+we can simply install nodemon
+npm i nodemon
+and in package.json inside script change it to nodemon index
+than if you start he server once with npm start it works everytime even after making changes in the code
+===========================================================================
+
+200 OK – Default success.
+res.status(200).json({ msg: 'User found' });            //like in get req
+
+201 Created – When you create a new resource.
+res.status(201).json({ msg: 'User created', id: newUser.id });              //like in post req
+
+==================================================================
+
+400: bad Request ,when not given sufficient data
+app.post('/api/users',(req,res)=>{
+    const body=req.body;
+----------------------------------------------------------------//new line added in post to change the status in res if all fields not provided by user
+    if(!body || !body.first_name|| !body.last_name){
+        res.status(400).json({msg:'all fields are req'})
+    }
+------------------------------------------------------------------------    
+    users.push({...body,id:users.length+1});
+    fs.writeFile('./MOCK_DATA.json',JSON.stringify(users),(err,data)=>{
+        return res.json({status:'success',id:users.length});
+    })
+})
+
+401: UnAuthorized
+402: Payment Req
+403: Forbidden=> no permission for that purpose
+
+404: Not found => no user,no page found. Ex:
+app
+  .route("/api/users/:id")
+  .get((req, res) => {
+    const id = Number(req.params.id);
+    const user = users.find((user) => user.id === id); 
+----------------------------------------
+    if (!user) {
+      return res.status(404).json({ error: "user not found" });             //like if api/users/303xhf which is not present in db
+    }
+-------------------------------------------    
+    return res.json(user);
+  });
+
+=================================================================
+
+500: Internal Server Error=> error in code of your sever
+
+===================================================================
+
+3xx->redirection: like in payment gateway you get redirected
+also in url Shortner you get redirected;
+

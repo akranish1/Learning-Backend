@@ -1,0 +1,30 @@
+Headers are key-value pairs in HTTP requests and responses that carry metadata(contains data about the data) about the request/response.
+ex: envelope is header and the letter inside has the actual data
+
+//you can see it in postman or
+inspect->Network->headers
+
+Request headers → tell server about client (e.g. User-Agent, Authorization, Content-Type)
+Response headers → tell client about server/response (e.g. Content-Type, Set-Cookie, Cache-Control)
+================================================
+
+Get a specific header
+app.get('/user', (req, res) => {
+  const userAgent = req.get('User-Agent');              // or req.headers['user-agent']
+  res.send(`Your browser is: ${userAgent}`);
+});
+
+================================================
+
+Custom request headers
+You can send custom headers use X before the name (e.g. x-api-key) from client and access them:
+
+app.get('/data', (req, res) => {
+  const apiKey = req.get('X-api-key');
+  res.send(`API key received: ${apiKey}`);
+});
+
+=======================================================
+
+here Content-Type is a built in header:
+res.set('Content-Type', 'application/json');

@@ -1,0 +1,42 @@
+Middleware is like a function which runs on every request and response
+it checks or validate the request
++nt in btwn client and server
+there can be multiple Middleware in one code
+
+=========================================================
+
+Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. The next middleware function is commonly denoted by a variable named next.
+
+Middleware functions can perform the following tasks:
+Execute any code.
+Make changes to the request and the response objects.
+End the request-response cycle.
+Call the next middleware function in the stack.
+
+=====================================================
+
+when and why to use middleware:
+when you need to do same for all the different routes,so you do it before everything
+it reduces same redundant code 
+
+Syntax:
+const express = require('express')
+const app = express()
+
+app.use((req, res, next) => {
+  console.log('Time:', Date.now())
+  next()
+})
+
+=================================================
+
+app.get('/user/:id', (req, res, next) => {
+  console.log('ID:', req.params.id)
+  next('route')                   // skips remaining handlers in this route, goes to next matching route(becoz  res.send()this usually end the req) 
+}, (req, res, next) => {
+  res.send('User Info')                 // this will now be skipped,
+})
+
+app.get('/user/:id', (req, res, next) => {
+  res.send(req.params.id)                       // this one runs
+})

@@ -1,0 +1,21 @@
+What is MVC (Model–View–Controller) in Node.js?
+It’s a design pattern used to organize code into separate layers, so your project doesn’t become messy.
+
+Model → Handles data
+View → Handles presentation(FrontEnd)
+Controller → Handles requests & responses.
+
+With MVC:
+Separation of concerns
+Reusability
+Maintainability
+Collaboration
+
+MVC is widely used and accepted in industry.
+
+
+//In Our Project (Work Flow):
+index.js->
+->routes(It contains the url)and .get,.post,.patch(which calls contoller)->
+->(Controller contains HTTP MEthods)Controller(manipulates Models which contains the schema)->
+->models->Views
